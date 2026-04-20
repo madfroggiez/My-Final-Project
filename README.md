@@ -41,49 +41,41 @@ The purpose of this project is to help organizations such as banks and credit ca
 The top ten features the random forest model identified as being the components best used to identify fraud are:
 
 1. Failed_Transaction_Count_7d
-    -  Count of failed transactions during a 7 day period
-2. Transaction_Distance
-    - Distance from the user's usual location
-3. Account_Balance
-    - Balance of the user's account before the transaction took place
-4. Avg_Transaction_Amount_7d
-    - Average transaction amount during a seven day period
-5. Amount_Deviation_from_7d_Avg
-    - Difference between the 7-day average and the current transaction amount
-6. Transaction_Amount
-    - Amount spent during the transaction
-7. Amount_to_Balance_Ratio
-    - Ratio of the amount spent in the transaction to the account balance
-8. Card_Age
-    - Age of the card
-9. Daily_Transaction_Count
-    - Number of transactions completed on the day the transaction took place
-10. Is_Weekend
-    - Indicates whether the transaction took place on a weekday or not
+2. 7d_severity                 
+3. Amount_to_Balance_Ratio
+4. Account_Balance
+5. Transaction_Amount
+6. user_transaction_avg_diff
+7. Transaction_Distance
+8. Amount_Diff_from_7d_Avg
+9. Avg_Transaction_Amount_7d
+10. device_distance_age_risk d
+
 
 ### K-Means Clustering Model:
 Using the top five features from the random forests model, the k-means model grouped the transactions into five clusters based on their risk of being fraudulent, ranging from low to high risk. 
 
 
 **Table of Cluster Profiles (Means):**
-| Cluster | Failed Transaction Count 7d | Transaction Distance | Account Balance | Avg Transaction Amount 7d | Amount Deviation from 7d Avg | Fraud Label |
-|--------|-----------------------------|----------------------|-----------------|---------------------------|------------------------------|------------|
-| 0 | -0.148890 | 0.913638 | -0.085523 | 0.895156 | 0.847046 | 0.278405 |
-| 1 | -0.946445 | -0.198683 | 0.675028 | -0.736829 | -0.697327 | 0.151595 |
-| 2 | 0.133159 | -0.908193 | -0.013260 | 0.907238 | 0.849707 | 0.340465 |
-| 3 | 0.039357 | -0.043909 | -1.056483 | -0.791596 | -0.757792 | 0.296819 |
-| 4 | 0.923868 | 0.261894 | 0.735958 | -0.676251 | -0.617502 | 0.553170 |
+
+| Cluster | Failed_Transaction_Count_7d | 7d_severity | Amount_to_Balance_Ratio | Account_Balance | Transaction_Amount | user_transaction_avg_diff | Transaction_Distance | Amount_Diff_from_7d_Avg | Fraud_Label |
+|--------|-----------------------------|-------------|--------------------------|-----------------|--------------------|----------------------------|----------------------|---------------------------|------------|
+| 0 | 0.856424 | -0.055024 | -0.149780 | 0.186436 | -0.370773 | 0.351939 | -0.047046 | 0.253072 | 0.496083 |
+| 3 | 0.336581 | 9.365815 | 10.371883 | -1.703793 | 1.584432 | -1.486507 | -0.017074 | -0.869228 | 0.389222 |
+| 2 | 0.008647 | 0.198522 | 0.274655 | -0.033998 | 1.590271 | -1.505237 | 0.000222 | -1.123761 | 0.300595 |
+| 1 | -0.865532 | -0.155392 | -0.108386 | -0.149307 | -0.381186 | 0.359644 | 0.047207 | 0.275124 | 0.155146 |
+
+---
 
 **Risk Ranking:**
-1. Cluster 4: Highest risk
-2. Cluster 2: Medium to high risk
-3. Cluster 3: Moderate risk
-4. Cluster 0: low to moderate risk
-5. Cluster 1: Lowest risk
 
+1. Cluster 0: Highest risk  
+2. Cluster 3: High risk  
+3. Cluster 2: Moderate risk  
+4. Cluster 1: Lowest risk  
 
-**Summary** 
+---
 
-The cluster banks and credit card companies should keep a close eye on cluster 4. Of the five clusters, cluster 4 has the highest risk of fraudulent transactions. This cluster is characterized by an extremely high failed transaction rate, a moderate transaction distance, and a high account balance.
+**Summary**
 
-
+The cluster that banks and credit card companies should monitor the most is Cluster 0. This group has the highest fraud rate, making it the highest risk segment.  This cluster is characterized by its elevated failed transaction counts and its extremely low amount to balance ratio. 
